@@ -230,7 +230,7 @@ int TiHuan::zui_hou_h(CString path, CString xiu_gai, CString kuo_zhan)
 	const char* path_jp = T2A(wen_jian_ming_j);/*转换后的文件路径*/
 	long long handle;                 /*用于查找的句柄*/
 	struct _finddata_t fileinfo;      /*文件信息的结构体*/
-	handle = _findfirst(path_jp, &fileinfo);//获取句柄
+	handle = _findfirst(path_jp, &fileinfo); //获取句柄
 	if (-1 == handle)
 	{
 		return -1;
