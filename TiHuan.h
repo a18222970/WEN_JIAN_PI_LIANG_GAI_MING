@@ -127,7 +127,10 @@ public:
 	 被本函数调用的函数清单:
 	 调用本函数的函数清单:
 	 输入参数说明:
-
+	 path: 文件所在文件夹路径,结尾不含"\"
+	 yuan_shi: 修改前的文件名
+	 xiu_gai: 要修改的字符
+	 kuo_zhan: 文件扩展名
 	 输出参数说明:
 	 返回值的说明:
 
@@ -135,6 +138,22 @@ public:
 	*************************************************/
 	int zhong_jian_h(CString path, CString yuan_shi, CString xiu_gai, CString kuo_zhan);
 
+	/*************************************************
+	 函数名称: zhong_jian_h
+	 函数功能: 修改替换文件字符
+	 被本函数调用的函数清单:
+	 调用本函数的函数清单:
+	 输入参数说明:
+	 path: 文件所在文件夹路径,结尾不含"\"
+	 yuan_shi: 修改前的文件名
+	 xiu_gai: 要修改的字符
+	 xu_hao: 尾部添加的起始序号
+	 kuo_zhan: 文件扩展名
+	 输出参数说明:
+	 返回值的说明:
+
+	 其它说明:无
+	*************************************************/
 	int zhong_jian_h(CString path, CString yuan_shi, CString xiu_gai, unsigned int xu_hao, CString kuo_zhan);
 
 	/*************************************************
@@ -154,8 +173,39 @@ public:
 	*************************************************/
 	int quan_bu_h(CString path, CString xiu_gai, CString kuo_zhan, unsigned int shu_zhi=0);
 
+	/*************************************************
+	 函数名称: ShanChuH
+	 函数功能: 删除文件名的字符
+	 被本函数调用的函数清单:
+	 调用本函数的函数清单:
+	 输入参数说明:
+	 path: 文件所在文件夹路径,结尾不含"\"
+	 xia_biao: 要删除的字符个数
+	 kuo_zhan: 文件扩展名
+	 qian_hou: 为TRUE就从左到右删除;为FALSE就从右到左删除并在结尾添加以1开始的序号 "_1"
+	 输出参数说明:
+	 返回值的说明:
+
+	 其它说明:无
+	*************************************************/
 	int ShanChuH(CString path, unsigned short xia_biao, CString kuo_zhan, BOOL qian_hou = TRUE);
 
+	/*************************************************
+	 函数名称: ShanChuH
+	 函数功能: 删除文件名中的指定字符,每次只能删除1个字符
+	 被本函数调用的函数清单:
+	 调用本函数的函数清单:
+	 输入参数说明:
+	 path: 文件所在文件夹路径,结尾不含"\"
+	 xiu_gai: 指定的需要删除的单独的字符,
+	 xia_biao: 尾部添加的起始序号
+	 kuo_zhan: 文件扩展名
+	 qian_hou: 为TRUE为单纯的删除;为FALSE为删除后在结尾重新排序 "-1"
+	 输出参数说明:
+	 返回值的说明:
+
+	 其它说明:无
+	*************************************************/
 	int ShanChuH(CString path, CString xiu_gai, unsigned short xia_biao, CString kuo_zhan, BOOL qian_hou = TRUE);
 
 

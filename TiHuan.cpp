@@ -567,7 +567,7 @@ int TiHuan::ShanChuH(CString path, unsigned short xia_biao, CString kuo_zhan, BO
 	unsigned short dianXiaoBiaoU = 0; /*扩展名"."的下标*/
 	if (path == L"")
 	{
-		return -3;
+		return -3; /*路径为空*/
 	}
 	wen_jian_ming_j = path + L"\\*";
 	path = path + _T("\\");
@@ -579,7 +579,7 @@ int TiHuan::ShanChuH(CString path, unsigned short xia_biao, CString kuo_zhan, BO
 	handle = _findfirst(path_jp, &fileinfo);//获取句柄
 	if (-1 == handle)
 	{
-		return -1;
+		return -1; /*获取文件句柄失败*/
 	}
 	if (qian_hou)
 	{
@@ -672,6 +672,7 @@ int TiHuan::ShanChuH(CString path, unsigned short xia_biao, CString kuo_zhan, BO
 				return -2;  /*重命名出错*/
 			}
 			len++;
+			xiaBiaoU++;
 		}
 		while (!_findnext(handle, &fileinfo))//循环查找其他符合的文件，知道找不到其他的为止
 		{
@@ -708,9 +709,10 @@ int TiHuan::ShanChuH(CString path, unsigned short xia_biao, CString kuo_zhan, BO
 						return -2;  /*重命名出错*/
 					}
 					len++;
+					xiaBiaoU++;
 				}
 			}
-		}/*dfgeru52你好_3  geru52你好_14*/
+		}
 		_findclose(handle); /*关闭句柄*/
 	}
 	return len;
@@ -723,9 +725,14 @@ int TiHuan::ShanChuH(CString path, CString xiu_gai, unsigned short xia_biao, CSt
 	CString xiu_gai_j;
 	unsigned short dianXiaoBiaoU = 0; /*扩展名"."的下标*/
 	short FindXiaBiaoU = 0;   /*find返回的下标*/
+	//unsigned short ZiFuLenU = xiu_gai.GetLength();/*获取字符串长度*/
+	if (1 != xiu_gai.GetLength())
+	{
+		return -6; /*指定删除的字符数过多*/
+	}
 	if (path == L"")
 	{
-		return -3;
+		return -3; /*路径为空*/
 	}
 	wen_jian_ming_j = path + L"\\*";
 	path = path + _T("\\");
@@ -737,7 +744,7 @@ int TiHuan::ShanChuH(CString path, CString xiu_gai, unsigned short xia_biao, CSt
 	handle = _findfirst(path_jp, &fileinfo);//获取句柄
 	if (-1 == handle)
 	{
-		return -1;
+		return -1; /*获取文件句柄失败*/
 	}
 	if (qian_hou)
 	{
@@ -832,6 +839,7 @@ int TiHuan::ShanChuH(CString path, CString xiu_gai, unsigned short xia_biao, CSt
 				return -2;  /*重命名出错*/
 			}
 			len++;
+			xia_biao++;
 		}
 		while (!_findnext(handle, &fileinfo))//循环查找其他符合的文件，知道找不到其他的为止
 		{
@@ -875,9 +883,10 @@ int TiHuan::ShanChuH(CString path, CString xiu_gai, unsigned short xia_biao, CSt
 					return -2;  /*重命名出错*/
 				}
 				len++;
-			}/*dfgeru52你好_3  geru52你好_14*/
-			_findclose(handle); /*关闭句柄*/
+				xia_biao++;
+			}
 		}
+		_findclose(handle); /*关闭句柄*/
 		return len;
 	}
 }
